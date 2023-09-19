@@ -21,13 +21,19 @@ public class BalancedBrackets {
      */
     public static boolean hasBalancedBrackets(String str) {
         int brackets = 0;
-        for (char ch : str.toCharArray()) { //refactor math tracking for proper order brackets
-            if (ch == '[') {
-                brackets++;
-            } else if (ch == ']') {
-                brackets--;
+            for (char ch : str.toCharArray()) { //refactor math tracking for proper order brackets
+                if (ch == '[') {
+                    brackets++;
+                    if (brackets > 1) {
+                        return false;
+                    }
+                } else if (ch == ']') {
+                    brackets--;
+                    if (brackets < 0) {
+                        return false;
+                    }
+                }
             }
-        }
         return brackets == 0;
     }
 }
